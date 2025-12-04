@@ -1,9 +1,6 @@
-FROM node:20-alpine AS development
+FROM node:20 AS development
 
 WORKDIR /app
-
-# Install development tools
-RUN apk add --no-cache bash curl wget
 
 # Copy package files
 COPY package*.json ./
@@ -27,7 +24,7 @@ FROM development AS build
 RUN npm run build
 
 # Production stage
-FROM node:20-alpine AS production
+FROM node:20 AS production
 
 WORKDIR /app
 
